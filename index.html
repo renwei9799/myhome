@@ -1,8 +1,261 @@
-我的个人主页
-    
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>橘色回信 | 个人主页</title>
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.9);
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    
-        Hello World! 👋
-        这是我基于 GitHub Pages 搭建的免费 HTML 首页。
-        查看我的 GitHub
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+            min-height: 100vh;
+            /* Bing 每日壁纸官方高清接口，结合深色遮罩保证文字可读性 */
+            background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)),
+                        url('https://bing.biturl.top/?resolution=1920&format=image&index=0&mkt=zh-CN') center center / cover no-repeat fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-primary);
+            padding: 40px 20px;
+        }
+
+        /* 核心毛玻璃容器 */
+        .glass-container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 48px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* 顶部光晕点缀 */
+        .glass-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+            transform: rotate(-15deg);
+            pointer-events: none;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: var(--text-secondary);
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .intro {
+            line-height: 1.8;
+            font-size: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            text-align: justify;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 爱好卡片排列 */
+        .hobbies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .hobby-card {
+            background: rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .hobby-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+        }
+
+        .hobby-title {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .hobby-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* 日记时间线 */
+        .diary-list {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .diary-item {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .diary-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+        }
+
+        .diary-date {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: rgba(255, 255, 255, 0.75);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .diary-text {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-secondary);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 600px) {
+            .glass-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-container">
+        <header>
+            <div class="avatar">C</div>
+            <h1>林暮迟 (Cyan Lin)</h1>
+            <p class="subtitle">胶片收集者 · 声音采风人 · 傍晚逃跑计划发起者</p>
+        </header>
+
+        <section class="intro">
+            <h2 class="section-title">自述</h2>
+            <p>生活在海风吹拂的南方小城，主业是自由撰稿人，副业是搜集全世界的黄昏。相信万物皆有回响，习惯用镜头和麦克风记录城市边缘正在消逝的细节，希望把时间切片保存成温暖的琥珀。</p>
+        </section>
+
+        <section>
+            <h2 class="section-title">生活侧写</h2>
+            <div class="hobbies">
+                <div class="hobby-card">
+                    <div class="hobby-icon">🎞️</div>
+                    <div class="hobby-title">复古胶片</div>
+                    <div class="hobby-desc">偏爱 135 颗粒感与过期的电影卷，享受暗房里等待影像缓缓浮现的不确定感。</div>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">🎙️</div>
+                    <div class="hobby-title">田野录音</div>
+                    <div class="hobby-desc">背着便携录音笔游走，收录涨潮的轰鸣、旧风扇的吱呀，以及深夜便利店的门铃。</div>
+                </div>
+                <div class="hobby-card">
+                    <div class="hobby-icon">☕</div>
+                    <div class="hobby-title">手冲实验</div>
+                    <div class="hobby-desc">浅烘日晒豆的重度爱好者，在研磨度与水温的细微配比中寻找干净的果酸层次。</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">潮汐日记</h2>
+            <div class="diary-list">
+                <div class="diary-item">
+                    <span class="diary-date">2026.08.12</span>
+                    <p class="diary-text">防波堤边坐了两个小时，录到了极纯粹的碎浪声。天空从蜜桃粉沉降成深紫灰，几只海鸥贴着金光闪烁的水面滑翔而过，夏天好像正悄悄退潮。</p>
+                </div>
+                <div class="diary-item">
+                    <span class="diary-date">2026.07.19</span>
+                    <p class="diary-text">冲洗完上个月在旧书市集拍的那卷底片。有几张因为漏光产生了意外的橘红色光斑，反而像极了那天午后照在老木桌上的刺眼阳光。</p>
+                </div>
+                <div class="diary-item">
+                    <span class="diary-date">2026.05.30</span>
+                    <p class="diary-text">尝试了一款埃塞俄比亚的新产季豆子，茉莉花香和佛手柑的风味格外明亮。把书桌挪到了靠窗的位置，写完最后一篇短篇故事时，夕阳刚好铺满纸面。</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
