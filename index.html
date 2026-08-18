@@ -1,211 +1,209 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ultimate Hello World</title>
+    <title>Fresh Hello World</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;900&display=swap');
-        
-        body, html {
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.6);
+            --text-color: #5c728a;
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            width: 100%;
+        }
+
+        body, html {
             height: 100%;
-            background-color: #050505;
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Nunito', sans-serif;
             overflow: hidden;
-            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* 柔和清新的流体渐变背景 */
+            background: linear-gradient(-45deg, #e0c3fc, #8ec5fc, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
         }
 
-        #canvas {
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 1;
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        #ui-layer {
-            position: absolute;
-            top: 30px;
-            left: 30px;
-            z-index: 2;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .glitch-title {
-            font-size: 1.8rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            color: #0ff;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
-            margin: 0;
-            animation: glitch-anim 2.5s infinite linear alternate-reverse;
-        }
-
-        .subtitle {
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 8px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        @keyframes glitch-anim {
-            0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 2px); }
-            20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -2px); }
-            40% { clip-path: inset(40% 0 50% 0); transform: translate(2px, 2px); }
-            60% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, -2px); }
-            80% { clip-path: inset(10% 0 70% 0); transform: translate(2px, -2px); }
-            100% { clip-path: inset(30% 0 50% 0); transform: translate(-2px, 2px); }
-        }
-
-        .scanlines {
+        /* 气泡背景动画 */
+        .bubbles {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.15));
-            background-size: 100% 4px;
-            z-index: 10;
+            z-index: 0;
             pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.35);
+            border-radius: 50%;
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.5);
+            animation: floatUp 10s infinite ease-in;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.8); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+        }
+
+        /* 毛玻璃卡片 (Glassmorphism) */
+        .glass-card {
+            position: relative;
+            z-index: 1;
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            padding: 4rem 3rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(31, 38, 135, 0.08);
+            transition: transform 0.1s ease-out, box-shadow 0.1s ease-out;
+            /* 响应式宽度限制 */
+            width: 85%;
+            max-width: 500px;
+            /* 开启 3D 透视 */
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        /* 响应式流体排版 (Fluid Typography) */
+        h1 {
+            font-weight: 700;
+            color: #4a5c70;
+            /* clamp函数：在手机上最小2.5rem，随着屏幕变大增加，电脑上最大4.5rem */
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);
+            /* 配合卡片的 3D 悬浮效果 */
+            transform: translateZ(40px);
+        }
+
+        p {
+            font-weight: 400;
+            color: #728b9c;
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            letter-spacing: 1px;
+            transform: translateZ(25px);
+        }
+
+        .icon {
+            display: block;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            animation: gentle-bounce 3s infinite ease-in-out;
+            transform: translateZ(50px);
+        }
+
+        @keyframes gentle-bounce {
+            0%, 100% { transform: translateY(0) translateZ(50px); }
+            50% { transform: translateY(-12px) translateZ(50px); }
+        }
+
+        /* 移动端特殊适配优化 */
+        @media (max-width: 480px) {
+            .glass-card {
+                padding: 3rem 1.5rem;
+                border-radius: 24px;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="ui-layer">
-        <h1 class="glitch-title">PROJECT // HELLO_WORLD</h1>
-        <div class="subtitle">STATUS: ONLINE | INTERACTION: ENABLED (HOVER)</div>
+    <div class="bubbles" id="bubbles-container"></div>
+    
+    <div class="glass-card" id="card">
+        <span class="icon">🍃</span>
+        <h1>Hello World</h1>
+        <p>Take a deep breath. Enjoy the moment.</p>
     </div>
-    <div class="scanlines"></div>
-    <canvas id="canvas"></canvas>
 
     <script>
-        const canvas = document.getElementById('canvas');
-        const ctx = canvas.getContext('2d', { willReadFrequently: true });
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        // 生成背景漂浮的透明气泡
+        const bubblesContainer = document.getElementById('bubbles-container');
+        const bubbleCount = 20;
 
-        let particleArray = [];
-        const mouse = { x: null, y: null, radius: 120 };
+        for (let i = 0; i < bubbleCount; i++) {
+            let bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            
+            // 随机大小、位置、速度、延迟
+            let size = Math.random() * 50 + 15; 
+            let left = Math.random() * 100; 
+            let duration = Math.random() * 8 + 8; 
+            let delay = Math.random() * 10; 
 
-        window.addEventListener('mousemove', function(event) {
-            mouse.x = event.x;
-            mouse.y = event.y;
-        });
-        window.addEventListener('touchmove', function(event) {
-            mouse.x = event.touches[0].clientX;
-            mouse.y = event.touches[0].clientY;
-        });
-        window.addEventListener('mouseout', function() {
-            mouse.x = null;
-            mouse.y = null;
-        });
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${left}%`;
+            bubble.style.animationDuration = `${duration}s`;
+            bubble.style.animationDelay = `${delay}s`;
 
-        // Cyberpunk / Neon color palette
-        const colors = ['#ff007f', '#00f3ff', '#7b00ff', '#ffffff'];
-
-        class Particle {
-            constructor(x, y) {
-                this.baseX = x;
-                this.baseY = y;
-                // Start scattered across the screen for an intro assembly effect
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 1;
-                this.density = (Math.random() * 30) + 1;
-                this.color = colors[Math.floor(Math.random() * colors.length)];
-                this.angle = Math.random() * 360;
-            }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.fill();
-            }
-            update() {
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                let forceDirectionX = dx / distance;
-                let forceDirectionY = dy / distance;
-                let maxDistance = mouse.radius;
-                let force = (maxDistance - distance) / maxDistance;
-                let directionX = forceDirectionX * force * this.density;
-                let directionY = forceDirectionY * force * this.density;
-                
-                // Mouse repulsion
-                if (distance < mouse.radius && mouse.x != null) {
-                    this.x -= directionX;
-                    this.y -= directionY;
-                } else {
-                    // Elastic return to base position
-                    this.x += (this.baseX - this.x) * 0.05;
-                    this.y += (this.baseY - this.y) * 0.05;
-                }
-                
-                // Subtle floating wave effect
-                this.angle += 0.05;
-                this.baseX += Math.sin(this.angle) * 0.1;
-                this.baseY += Math.cos(this.angle) * 0.1;
-            }
+            bubblesContainer.appendChild(bubble);
         }
 
-        function init() {
-            particleArray = [];
-            
-            // Render text on an offscreen canvas to sample its pixels
-            const textCanvas = document.createElement('canvas');
-            const tCtx = textCanvas.getContext('2d', { willReadFrequently: true });
-            textCanvas.width = window.innerWidth;
-            textCanvas.height = window.innerHeight;
-            
-            let fontSize = Math.min(window.innerWidth / 7, window.innerHeight / 4);
-            tCtx.fillStyle = 'white';
-            tCtx.font = `900 ${fontSize}px "Orbitron", "Arial Black", sans-serif`;
-            tCtx.textAlign = 'center';
-            tCtx.textBaseline = 'middle';
-            tCtx.fillText('HELLO WORLD', textCanvas.width / 2, textCanvas.height / 2);
+        // 3D 卡片倾斜交互 (同时支持电脑鼠标和手机触摸)
+        const card = document.getElementById('card');
+        const body = document.body;
 
-            const textCoordinates = tCtx.getImageData(0, 0, textCanvas.width, textCanvas.height);
+        function handleMove(e) {
+            // 获取鼠标或手指的坐标
+            let clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            let clientY = e.clientY || (e.touches && e.touches[0].clientY);
             
-            // Dynamic resolution scaling for performance
-            let step = Math.max(4, Math.floor(window.innerWidth / 350)); 
-            
-            for (let y = 0, y2 = textCoordinates.height; y < y2; y += step) {
-                for (let x = 0, x2 = textCoordinates.width; x < x2; x += step) {
-                    if (textCoordinates.data[(y * 4 * textCoordinates.width) + (x * 4) + 3] > 128) {
-                        particleArray.push(new Particle(x, y));
-                    }
-                }
-            }
+            if (clientX === undefined || clientY === undefined) return;
+
+            const rect = card.getBoundingClientRect();
+            // 计算鼠标相对于卡片中心的位置
+            const x = clientX - rect.left - rect.width / 2;
+            const y = clientY - rect.top - rect.height / 2;
+
+            // 根据位置计算倾斜角度 (限制在 ±15 度内)
+            const rotateX = (-y / rect.height) * 20; 
+            const rotateY = (x / rect.width) * 20;
+
+            // 应用 3D 旋转和动态阴影
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            card.style.boxShadow = `${-x / 15}px ${-y / 15 + 15}px 30px rgba(31, 38, 135, 0.12)`;
         }
 
-        init();
-
-        function animate() {
-            // Motion blur / trail effect
-            ctx.fillStyle = 'rgba(5, 5, 5, 0.2)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
+        function handleLeave() {
+            // 鼠标移出或手指抬起时，弹性复位
+            card.style.transition = 'transform 0.5s ease-out, box-shadow 0.5s ease-out';
+            card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            card.style.boxShadow = '0 10px 40px rgba(31, 38, 135, 0.08)';
             
-            for (let i = 0; i < particleArray.length; i++) {
-                particleArray[i].draw();
-                particleArray[i].update();
-            }
-            requestAnimationFrame(animate);
+            // 移除过渡动画以防止移动时卡顿
+            setTimeout(() => {
+                card.style.transition = 'transform 0.1s ease-out, box-shadow 0.1s ease-out';
+            }, 500);
         }
 
-        animate();
-
-        window.addEventListener('resize', function() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            init();
-        });
+        // 电脑端事件
+        body.addEventListener('mousemove', handleMove);
+        body.addEventListener('mouseleave', handleLeave);
+        
+        // 手机端事件
+        body.addEventListener('touchmove', handleMove);
+        body.addEventListener('touchend', handleLeave);
     </script>
 </body>
 </html>
