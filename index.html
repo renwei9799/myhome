@@ -1,261 +1,211 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>海屿信箱 | 个人主页</title>
+    <title>Ultimate Hello World</title>
     <style>
-        :root {
-            --glass-bg: rgba(255, 255, 255, 0.14);
-            --glass-border: rgba(255, 255, 255, 0.28);
-            --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.88);
-        }
-
-        * {
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;900&display=swap');
+        
+        body, html {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
-            min-height: 100vh;
-            /* 海边沙滩落日 Base64 嵌入背景 */
-            background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.35)),
-                        url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAsICAoIBwsKCQoNDAsNERwSEQ8PESIZGhQcKSQrKigkJyctMkA3LTA9MCcnOEw5PUNFSElIKzZPVU5GVEBHSEX/2wBDAQwNDREPESESEiFFLicuRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUX/wAARCAMgBLADASIAAhEBAxEB/8QAGgABAQEBAQEBAAAAAAAAAAAAAAEDAgQFBv/EACEQAQEBAQACAwEBAQEBAAAAAAAREgECEwMEYSExQVEU/8QAGgEBAQEBAQEBAAAAAAAAAAAAAAEDAgQFBv/EAB8RAQEBAQEBAQEBAAMAAAAAAAAREgETAgMhMSIyQf/aAAwDAQACEQMRAD8A4FHlfrUFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBRQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUAFEEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBRREQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQAWEQQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQEFhAQWEBBYQFFERBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAUBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABRRBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAUBEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUUQQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQFFERBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFABRBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAUUQQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQAUQQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQFhFERIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFASEUBIRQEhFABRBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQUBBQEFAQ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cUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcVp8fjrpFrb4vC9e3w5OMvj8JxrWXf66511SuaVzFrqlc0pCuqVzSkK6pXNKQrqlc0pCuqVzSkK6pXNKQq+XLx4vm8I9lZ/J46465/E718/vYV38vhOsa05xzXdK4pViad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIad0rilIaZ0rilaxlp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuKUhp3SuK68f70hWnhzvl17vh+OcY/B8b18/nGX0747K5pXEdV1SuaUhXVK5pSFdUrmlIV1SuaUhXVK5pSFdUrmlIV1SuaUhXVK5pSFZ/L4XjwfJ498evpd/rzfN8d47+XPXipTz5nritY4rulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTulcUpDTilZ0rWMdNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnSkNNKVnS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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACigIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCigIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCigIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoAKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgKKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgKKIIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoAKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgKKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgKKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACigIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKAgoD//2Q==') center center / cover no-repeat fixed;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--text-primary);
-            padding: 40px 20px;
-        }
-
-        /* 核心毛玻璃容器 */
-        .glass-container {
             width: 100%;
-            max-width: 800px;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 24px;
-            padding: 48px;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+            height: 100%;
+            background-color: #050505;
+            font-family: 'Orbitron', sans-serif;
             overflow: hidden;
-            position: relative;
+            color: #fff;
         }
 
-        /* 顶部柔光点缀 */
-        .glass-container::before {
-            content: '';
+        #canvas {
+            display: block;
             position: absolute;
             top: 0;
-            left: -50%;
-            width: 200%;
-            height: 110px;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.22), transparent);
-            transform: rotate(-12deg);
+            left: 0;
+            z-index: 1;
+        }
+
+        #ui-layer {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            z-index: 2;
             pointer-events: none;
+            user-select: none;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, rgba(255, 182, 193, 0.6) 0%, rgba(255, 218, 185, 0.4) 100%);
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: bold;
-            color: #fff;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        }
-
-        h1 {
-            font-size: 28px;
-            font-weight: 500;
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        .glitch-title {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: #0ff;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+            margin: 0;
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
         }
 
         .subtitle {
-            font-size: 15px;
-            color: var(--text-secondary);
-            font-weight: 300;
-            letter-spacing: 1px;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 8px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .section-title {
-            font-size: 18px;
-            font-weight: 500;
-            margin-bottom: 20px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        @keyframes glitch-anim {
+            0% { clip-path: inset(20% 0 80% 0); transform: translate(-2px, 2px); }
+            20% { clip-path: inset(60% 0 10% 0); transform: translate(2px, -2px); }
+            40% { clip-path: inset(40% 0 50% 0); transform: translate(2px, 2px); }
+            60% { clip-path: inset(80% 0 5% 0); transform: translate(-2px, -2px); }
+            80% { clip-path: inset(10% 0 70% 0); transform: translate(2px, -2px); }
+            100% { clip-path: inset(30% 0 50% 0); transform: translate(-2px, 2px); }
         }
 
-        .intro {
-            line-height: 1.8;
-            font-size: 15px;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-            text-align: justify;
-            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-        }
-
-        /* 爱好卡片排列 */
-        .hobbies {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .hobby-card {
-            background: rgba(0, 0, 0, 0.12);
-            padding: 20px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: transform 0.3s ease, background 0.3s ease;
-        }
-
-        .hobby-card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .hobby-icon {
-            font-size: 24px;
-            margin-bottom: 12px;
-        }
-
-        .hobby-title {
-            font-size: 16px;
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-
-        .hobby-desc {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-
-        /* 日记时间线 */
-        .diary-list {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .diary-item {
-            position: relative;
-            padding-left: 20px;
-            border-left: 2px solid rgba(255, 255, 255, 0.35);
-        }
-
-        .diary-item::before {
-            content: '';
+        .scanlines {
             position: absolute;
-            left: -6px;
-            top: 4px;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-        }
-
-        .diary-date {
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 6px;
-            display: block;
-        }
-
-        .diary-text {
-            font-size: 14px;
-            line-height: 1.7;
-            color: var(--text-secondary);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-        }
-
-        @media (max-width: 600px) {
-            .glass-container {
-                padding: 30px 20px;
-            }
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.15));
+            background-size: 100% 4px;
+            z-index: 10;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
-
-    <div class="glass-container">
-        <header>
-            <div class="avatar">S</div>
-            <h1>陆屿舟 (Sora Lu)</h1>
-            <p class="subtitle">独立交互设计师 · 潮汐观察者 · 岛屿旅居中</p>
-        </header>
-
-        <section class="intro">
-            <h2 class="section-title">写在沙滩上的自我介绍</h2>
-            <p>生活在沿海岛屿，白天和像素、动效交互打交道，傍晚就把时间还给海浪与落日。坚信最打动人心的设计往往源于大自然的秩序与呼吸感，正在践行一种“半数字、半自然”的漫游生活。</p>
-        </section>
-
-        <section>
-            <h2 class="section-title">热衷之事</h2>
-            <div class="hobbies">
-                <div class="hobby-card">
-                    <div class="hobby-icon">🏄‍♂️</div>
-                    <div class="hobby-title">浪人日常</div>
-                    <div class="hobby-desc">初级冲浪爱好者，在等浪与起乘的瞬间学会如何与海洋的节奏和解。</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🌿</div>
-                    <div class="hobby-title">海风植栽</div>
-                    <div class="hobby-desc">在阳台试验耐盐碱的蕨类与多肉，看植物在海雾与日照间肆意舒展枝叶。</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🖋️</div>
-                    <div class="hobby-title">独立设计</div>
-                    <div class="hobby-desc">构建极简、温润且具质感的用户界面，探索数字产品中呼吸感与留白的边界。</div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="section-title">海屿手记</h2>
-            <div class="diary-list">
-                <div class="diary-item">
-                    <span class="diary-date">2026.08.16</span>
-                    <p class="diary-text">今天下午海浪特别温和，在板上趴着看了整整四十分钟夕阳。太阳坠入海平面的一刹那，整片沙滩都被染成了温柔的赤金，连海水退去时的白沫都泛着粉光。</p>
-                </div>
-                <div class="diary-item">
-                    <span class="diary-date">2026.07.22</span>
-                    <p class="diary-text">完成了一套以“潮汐流动”为概念的 UI 动效系统。坐在木栈道上用便携屏改完最后一版微交互，海风吹散了机身的微热，工作与生活在此刻达成了微妙的平衡。</p>
-                </div>
-                <div class="diary-item">
-                    <span class="diary-date">2026.06.05</span>
-                    <p class="diary-text">夏天的第一场海边阵雨在黄昏前停歇。踩着被雨水打湿的细软沙滩，捡到一枚带着同心圆纹理的贝壳。自然的几何学总能让人在喧嚣里重新沉静下来。</p>
-                </div>
-            </div>
-        </section>
+    <div id="ui-layer">
+        <h1 class="glitch-title">PROJECT // HELLO_WORLD</h1>
+        <div class="subtitle">STATUS: ONLINE | INTERACTION: ENABLED (HOVER)</div>
     </div>
+    <div class="scanlines"></div>
+    <canvas id="canvas"></canvas>
 
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particleArray = [];
+        const mouse = { x: null, y: null, radius: 120 };
+
+        window.addEventListener('mousemove', function(event) {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+        window.addEventListener('touchmove', function(event) {
+            mouse.x = event.touches[0].clientX;
+            mouse.y = event.touches[0].clientY;
+        });
+        window.addEventListener('mouseout', function() {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        // Cyberpunk / Neon color palette
+        const colors = ['#ff007f', '#00f3ff', '#7b00ff', '#ffffff'];
+
+        class Particle {
+            constructor(x, y) {
+                this.baseX = x;
+                this.baseY = y;
+                // Start scattered across the screen for an intro assembly effect
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.density = (Math.random() * 30) + 1;
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.angle = Math.random() * 360;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.fill();
+            }
+            update() {
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                let forceDirectionX = dx / distance;
+                let forceDirectionY = dy / distance;
+                let maxDistance = mouse.radius;
+                let force = (maxDistance - distance) / maxDistance;
+                let directionX = forceDirectionX * force * this.density;
+                let directionY = forceDirectionY * force * this.density;
+                
+                // Mouse repulsion
+                if (distance < mouse.radius && mouse.x != null) {
+                    this.x -= directionX;
+                    this.y -= directionY;
+                } else {
+                    // Elastic return to base position
+                    this.x += (this.baseX - this.x) * 0.05;
+                    this.y += (this.baseY - this.y) * 0.05;
+                }
+                
+                // Subtle floating wave effect
+                this.angle += 0.05;
+                this.baseX += Math.sin(this.angle) * 0.1;
+                this.baseY += Math.cos(this.angle) * 0.1;
+            }
+        }
+
+        function init() {
+            particleArray = [];
+            
+            // Render text on an offscreen canvas to sample its pixels
+            const textCanvas = document.createElement('canvas');
+            const tCtx = textCanvas.getContext('2d', { willReadFrequently: true });
+            textCanvas.width = window.innerWidth;
+            textCanvas.height = window.innerHeight;
+            
+            let fontSize = Math.min(window.innerWidth / 7, window.innerHeight / 4);
+            tCtx.fillStyle = 'white';
+            tCtx.font = `900 ${fontSize}px "Orbitron", "Arial Black", sans-serif`;
+            tCtx.textAlign = 'center';
+            tCtx.textBaseline = 'middle';
+            tCtx.fillText('HELLO WORLD', textCanvas.width / 2, textCanvas.height / 2);
+
+            const textCoordinates = tCtx.getImageData(0, 0, textCanvas.width, textCanvas.height);
+            
+            // Dynamic resolution scaling for performance
+            let step = Math.max(4, Math.floor(window.innerWidth / 350)); 
+            
+            for (let y = 0, y2 = textCoordinates.height; y < y2; y += step) {
+                for (let x = 0, x2 = textCoordinates.width; x < x2; x += step) {
+                    if (textCoordinates.data[(y * 4 * textCoordinates.width) + (x * 4) + 3] > 128) {
+                        particleArray.push(new Particle(x, y));
+                    }
+                }
+            }
+        }
+
+        init();
+
+        function animate() {
+            // Motion blur / trail effect
+            ctx.fillStyle = 'rgba(5, 5, 5, 0.2)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            for (let i = 0; i < particleArray.length; i++) {
+                particleArray[i].draw();
+                particleArray[i].update();
+            }
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+        window.addEventListener('resize', function() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            init();
+        });
+    </script>
 </body>
 </html>
